@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripviewer-deployment
+  namespace: web
+  labels:
+    app: tripviewer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tripviewer
+  template:
+    metadata:
+      labels:
+        app: tripviewer
+    spec:
+      containers:
+      - name: poi
+        image: registryhhr3041.azurecr.io/tripviewer:1.0.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: SQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: secret-sql-auth
+              key: SQL_USER
+        - name: SQL_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: secret-sql-auth
+              key: SQL_SERVER
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-sql-auth
+              key: SQL_PASSWORD
+        - name: TRIPS_API_ENDPOINT
+          value: http://tripspod.api:80
+        - name: USERPROFILE_API_ENDPOINT
+          value: http://userprofile.api:80
