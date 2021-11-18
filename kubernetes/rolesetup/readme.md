@@ -1,1 +1,2 @@
-???
+role defines the set of permissions, while rolebinding defines the person or group who has the role(s) - in this case they are scoped to namespace.
+We ended up doing rolebinding to AD groups rather than AD users
