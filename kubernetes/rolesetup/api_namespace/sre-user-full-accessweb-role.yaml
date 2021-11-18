@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: sre-user-full-accessweb
+  namespace: api
+  resourceVersion: "98197"
+  uid: 7bf0c8c8-cc8d-456e-a203-f2173939b490
+rules:
+- apiGroups:
+  - ""
+  - extensions
+  - apps
+  resources:
+  - '*'
+  verbs:
+  - watch
+  - get
+  - list
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  - cronjobs
+  verbs:
+  - watch
+  - get
+  - list

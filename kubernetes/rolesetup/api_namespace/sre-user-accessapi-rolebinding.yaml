@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: sre-user-accessapi
+  namespace: api
+  resourceVersion: "97446"
+  uid: 34d52a60-8af0-4036-94fb-d319bb7335d9
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: sre-user-full-accessapi
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: 5554eea2-c0ad-4498-a846-44fae064a22b
+  namespace: api
